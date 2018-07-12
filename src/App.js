@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium'
 import Person from './Person/Person'
 class Apps extends Component {
   state = {
@@ -58,10 +59,13 @@ class Apps extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'lightblue', 
+      backgroundColor: 'red', 
       border: '2px solid #eee',
       font: 'inherit',
-      padding: '8px'
+      padding: '8px',
+      ':hover':{
+        backgroundColor: 'yellow'
+      }
     }
     let person = null ;
           if(this.state.flag){
@@ -78,20 +82,25 @@ class Apps extends Component {
               }
           </div>
             )
-          //  style.backgroundColor = "red"
-
+          style.backgroundColor = "green"
+            style[':hover']={
+              backgroundColor: 'grey'
+            }
           }
         const classes = []
-        if (this.state.persons.length === 2)
+        if (this.state.persons.length <= 2){
           classes.push('red')
-        if (this.state.persons.length === 1)
+        }
+        if (this.state.persons.length <= 1){
            classes.push('bold')
+           console.log(classes)
+        }
 
     return (
       <div className="App">
         < h1>Welcome To new World</h1>
-        <p className={classes.join(" ")}>React And Redux</p><br/><br/>
-        <button style={style} onClick={this.clickHandler}>Click Here</button>
+        <p className={classes.join(' ')}>React And Redux</p><br/><br/>
+        {/*<button style={style} onClick={this.clickHandler}>Click Here</button> */}
         <button style={style} onClick={this.toggleHandler}>Toggle person</button>
         {person}
       </div>
@@ -100,4 +109,4 @@ class Apps extends Component {
   }
 }
 
-export default Apps;
+export default Radium(Apps);
