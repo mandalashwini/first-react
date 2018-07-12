@@ -3,33 +3,37 @@ import './App.css';
 import Person from './Person/Person'
 class Apps extends Component {
   state = {
-   person:[
-      {name: "Divya"},
-      {name: "Pinky"},
-      {name: "Sangita"},
+   persons:[
+      {id: '1',name: "Divya"},
+      {id: '2',name: "Pinky"},
+      {id: '3',name: "Sangita"},
     ],
     flag : true
   }
   clickHandler = () => {
     console.log("success!!!!")
     this.setState( {
-      person:[
-      {name: "Vicky"},
-      {name: "Naval"},
-      {name: "Naval-Ashu"}
+      persons:[
+      {id: '1',name: "Vicky"},
+      {id: '2',name: "Naval"},
+      {id: '3',name: "Naval-Ashu"}
       ]
     } )
   }
-  nameChangeHandler = (event) =>{
-    this.setState( {
-      person:[
-      {name: "Divya"},
-      {name: event.target.value},
-      {name: "Naval-Ashu"}
-      ]
-    } )
+  nameChangeHandler = (event,id) =>{
+    const index = this.state.persons.findIndex(person =>{
+       return person.id === id
+    })  
+    const person = {
+      ...this.state.persons[index]
+    }
+    person.name = event.target.value;
+    const person_data = [...this.state.persons]
+    person_data[index]= person
+    this.setState({persons: person_data})
 
   }
+
   toggleHandler = () => {
 
     const show = this.state.flag
@@ -37,7 +41,16 @@ class Apps extends Component {
       flag: !show
     })
   }
-
+ deleteHandler = (index) => {
+   console.log(index)
+   //const person = this.state.persons.slice() //make copy of persons
+   const person = [...this.state.persons]
+   person.splice(index,1)
+  this.setState(
+      {  persons: person}
+  )
+   console.log(person)
+ }
 
   paraClickHandler = (x) => {
     console.log("Value of"+x)
@@ -50,25 +63,29 @@ class Apps extends Component {
       font: 'inherit',
       padding: '8px'
     }
+    let person = null ;
+          if(this.state.flag){
+            person = (
+          <div>
+               { this.state.persons.map( (per,index) => {
+                  return <Person
+                  name = {per.name}
+                  key = {per.id}
+                  click = {this.deleteHandler.bind(index)}
+                  changed= {(event) => this.nameChangeHandler(event,per.id)}
+                  />
+                })
+              }
+          </div>
+            )
+          }
     return (
       <div className="App">
-        <h1>Welcome To new World</h1>
+        < h1>Welcome To new World</h1>
         <p>React And Redux</p><br/><br/>
         <button style={style} onClick={this.clickHandler}>Click Here</button>
         <button style={style} onClick={this.toggleHandler}>Toggle person</button>
-        { this.state.flag ? 
-            <div>
-            <Person name={this.state.person[0].name} 
-                    click={this.paraClickHandler.bind(this,1500)}>I am From Pune</Person>
-
-
-            <Person name={this.state.person[1].name}
-                    changed={this.nameChangeHandler}/>
-
-            <Person name={this.state.person[2].name}/>
-            <Person name="Naval"> I am From Solapur...</Person>
-            </div> : null
-        }
+        {person}
       </div>
     );
    // return React.createElement('div',{className:'App'},React.createElement('h1',null,'React And Redux'))
