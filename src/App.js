@@ -100,8 +100,8 @@ class Apps extends Component {
       <div className="App">
         < h1>Welcome To new World</h1>
         <p className={classes.join(' ')}>React And Redux</p><br/><br/>
-        {/*<button style={style} onClick={this.clickHandler}>Click Here</button> */}
-        <button style={style} onClick={this.toggleHandler}>Toggle person</button>
+        <button style={style} key='1' onClick={this.clickHandler}>Click Here</button> 
+        <button style={style} key='2' onClick={this.toggleHandler}>Toggle person</button>
         {person}
       </div>
     );
