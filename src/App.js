@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Radium from 'radium'
 import Person from './Person/Person'
 class Apps extends Component {
@@ -87,19 +87,19 @@ class Apps extends Component {
               backgroundColor: 'grey'
             }
           }
-        const classes = []
+        const Assignclass = []
         if (this.state.persons.length <= 2){
-          classes.push('red')
+          Assignclass.push(classes.red)
         }
         if (this.state.persons.length <= 1){
-           classes.push('bold')
+          Assignclass.push(classes.bold)
            console.log(classes)
         }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         < h1>Welcome To new World</h1>
-        <p className={classes.join(' ')}>React And Redux</p><br/><br/>
+        <p className={Assignclass.join(' ')}>React And Redux</p><br/><br/>
         <button style={style} key='1' onClick={this.clickHandler}>Click Here</button> 
         <button style={style} key='2' onClick={this.toggleHandler}>Toggle person</button>
         {person}
