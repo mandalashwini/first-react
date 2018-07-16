@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+  
+}
+.red{
+  color: red
+}
+.bold{
+  font-weight: bold;
+}
+.App button.b1{
+  background-color: blue;
+  padding: 10px;
+  color: white;
+  cursor: pointer;  
+}
+
+.App button.b1:hover{
+  background-color: green;
+  color: black;
+}

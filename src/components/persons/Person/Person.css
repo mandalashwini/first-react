@@ -4,7 +4,13 @@
   box-sizing: border-box;
   width: 50%;
   height:100%;
+  margin-left: 300px;
   margin-bottom: 30px;
   padding-bottom: 10px;
   text-align: center
+}
+@media (min-width : 300px){
+  .Person{
+    width: 500px;
+  }
 }

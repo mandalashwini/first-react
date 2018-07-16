@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Radium from 'radium'
-import Person from './Person/Person'
+import Persons from '../components/persons/persons'
 class Apps extends Component {
   state = {
    persons:[
@@ -58,34 +58,18 @@ class Apps extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'red', 
-      border: '2px solid #eee',
-      font: 'inherit',
-      padding: '8px',
-      ':hover':{
-        backgroundColor: 'yellow'
-      }
-    }
+  
     let person = null ;
           if(this.state.flag){
             person = (
           <div>
-               { this.state.persons.map( (per,index) => {
-                  return <Person
-                  name = {per.name}
-                  key = {per.id}
-                  click = {this.deleteHandler.bind(index)}
-                  changed= {(event) => this.nameChangeHandler(event,per.id)}
-                  />
-                })
-              }
+            <Persons persons={this.state.persons}
+            clicked = {this.deleteHandler}
+            changed= {this.nameChangeHandler}
+            />
           </div>
             )
-          style.backgroundColor = "green"
-            style[':hover']={
-              backgroundColor: 'grey'
-            }
+  
           }
         const Assignclass = []
         if (this.state.persons.length <= 2){
@@ -100,8 +84,8 @@ class Apps extends Component {
       <div className={classes.App}>
         < h1>Welcome To new World</h1>
         <p className={Assignclass.join(' ')}>React And Redux</p><br/><br/>
-        <button style={style} key='1' onClick={this.clickHandler}>Click Here</button> 
-        <button style={style} key='2' onClick={this.toggleHandler}>Toggle person</button>
+        <button  className={classes.b1} onClick={this.clickHandler}>Click Here</button> 
+        <button  onClick={this.toggleHandler}>Toggle person</button>
         {person}
       </div>
     );

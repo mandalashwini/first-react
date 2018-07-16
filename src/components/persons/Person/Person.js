@@ -1,7 +1,11 @@
 import React from 'react';
 import classes from './Person.css'
 const Person = (props) => {
-    
+        debugger
+         const num = Math.random ()
+      /*  if (num > 0.2){
+        throw new Error("Number is greater than 1");
+        }*/
     
     return (
         <div className={classes.Person}>
