@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Radium from 'radium'
 import Persons from '../components/persons/persons'
+import Cockpit from '../components/Cockpit/cockpit'
 class Apps extends Component {
   state = {
    persons:[
@@ -10,7 +11,7 @@ class Apps extends Component {
       {id: '3',name: "Sangita"},
     ],
     flag : true
-  }
+  } 
   clickHandler = () => {
     console.log("success!!!!")
     this.setState( {
@@ -82,10 +83,14 @@ class Apps extends Component {
 
     return (
       <div className={classes.App}>
-        < h1>Welcome To new World</h1>
-        <p className={Assignclass.join(' ')}>React And Redux</p><br/><br/>
-        <button  className={classes.b1} onClick={this.clickHandler}>Click Here</button> 
-        <button  onClick={this.toggleHandler}>Toggle person</button>
+
+          <Cockpit className={Assignclass.join(' ')} 
+                    classes={classes} 
+                    toggle={this.toggleHandler}
+                    clicked={this.clickHandler}
+          />
+
+       
         {person}
       </div>
     );
